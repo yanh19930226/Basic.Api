@@ -9,27 +9,9 @@
             公司
             </summary>
         </member>
-        <member name="M:Basic.Api.Controllers.CompanyController.Index">
+        <member name="M:Basic.Api.Controllers.CompanyController.GetCompanyPageList">
             <summary>
             获取公司
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Basic.Api.Controllers.CompanyController.Add">
-            <summary>
-            添加公司
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Basic.Api.Controllers.CompanyController.Update">
-            <summary>
-            修改公司
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Basic.Api.Controllers.CompanyController.Delete">
-            <summary>
-            删除公司
             </summary>
             <returns></returns>
         </member>
@@ -38,7 +20,7 @@
             店铺
              </summary>
         </member>
-        <member name="M:Basic.Api.Controllers.ShopController.Index">
+        <member name="M:Basic.Api.Controllers.ShopController.GetShopPageList">
             <summary>
             店铺
             </summary>

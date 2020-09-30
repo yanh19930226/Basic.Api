@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Basic.Api.Data;
 using Core;
+using Core.Logger;
 using Core.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,7 @@ namespace Basic.Api
             {
                 options.UseMySql(Configuration.GetConnectionString("MysqlUser"), sql => sql.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
             })
+                  .AddCoreSeriLog()
                .AddCoreSwagger();
         }
 

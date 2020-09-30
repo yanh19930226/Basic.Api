@@ -9,7 +9,7 @@ namespace Basic.Api.Controllers
     /// <summary>
     /// 公司
     /// </summary>
-    [Route("api/company")]
+    [Route("Api/Company")]
     [ApiController]
     public class CompanyController : Controller
     {
@@ -17,40 +17,41 @@ namespace Basic.Api.Controllers
         /// 获取公司
         /// </summary>
         /// <returns></returns>
-        [Route("getlist")]
-        public IActionResult Index()
+        [Route("GetCompanyPageList")]
+        [HttpGet]
+        public IActionResult GetCompanyPageList()
         {
             return Ok();
         }
-        /// <summary>
-        /// 添加公司
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("addcompany")]
-        public IActionResult Add()
-        {
-            return Ok();
-        }
-        /// <summary>
-        /// 修改公司
-        /// </summary>
-        /// <returns></returns>
-        [Route("updatecompany")]
-        [HttpPut]
-        public IActionResult Update()
-        {
-            return Ok();
-        }
-        /// <summary>
-        /// 删除公司
-        /// </summary>
-        /// <returns></returns>
-        [Route("deletecompany")]
-        [HttpDelete]
-        public IActionResult Delete()
-        {
-            return Ok();
-        }
+        ///// <summary>
+        ///// 添加公司
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpPost]
+        //[Route("addcompany")]
+        //public IActionResult Add()
+        //{
+        //    return Ok();
+        //}
+        ///// <summary>
+        ///// 修改公司
+        ///// </summary>
+        ///// <returns></returns>
+        //[Route("updatecompany")]
+        //[HttpPut]
+        //public IActionResult Update()
+        //{
+        //    return Ok();
+        //}
+        ///// <summary>
+        ///// 删除公司
+        ///// </summary>
+        ///// <returns></returns>
+        //[Route("deletecompany")]
+        //[HttpDelete]
+        //public IActionResult Delete()
+        //{
+        //    return Ok();
+        //}
     }
 }

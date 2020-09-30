@@ -9,7 +9,7 @@ namespace Basic.Api.Controllers
     /// <summary>
     ///店铺
     /// </summary>
-    [Route("api/shop")]
+    [Route("Api/Shop")]
     [ApiController]
     public class ShopController : Controller
     {
@@ -18,8 +18,8 @@ namespace Basic.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("getlist")]
-        public IActionResult Index()
+        [Route("GetShopPageList")]
+        public IActionResult GetShopPageList()
         {
             return Ok();
         }
