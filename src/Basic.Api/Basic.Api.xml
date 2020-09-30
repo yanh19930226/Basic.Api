@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Basic.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Basic.Api.Controllers.CompanyController">
+            <summary>
+            公司
+            </summary>
+        </member>
+        <member name="M:Basic.Api.Controllers.CompanyController.Index">
+            <summary>
+            获取公司
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.CompanyController.Add">
+            <summary>
+            添加公司
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.CompanyController.Update">
+            <summary>
+            修改公司
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.CompanyController.Delete">
+            <summary>
+            删除公司
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Basic.Api.Controllers.ShopController">
+             <summary>
+            店铺
+             </summary>
+        </member>
+        <member name="M:Basic.Api.Controllers.ShopController.Index">
+            <summary>
+            店铺
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.Id">
+            <summary>
+            ShopId
+            </summary>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.Name">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.CompanyId">
+            <summary>
+            所属公司
+            </summary>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.ApiKey">
+            <summary>
+            密钥
+            </summary>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.IsOpen">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.Types">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.OrderPrefix">
+            <summary>
+            订单前缀
+            </summary>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.Currency">
+            <summary>
+            货币
+            </summary>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.Domain">
+            <summary>
+            域名
+            </summary>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.AdminUrl">
+            <summary>
+            后台地址
+            </summary>
+        </member>
+    </members>
+</doc>
