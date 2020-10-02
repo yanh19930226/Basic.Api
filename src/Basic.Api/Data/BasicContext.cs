@@ -16,7 +16,7 @@ namespace Basic.Api.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseLazyLoadingProxies(false);
+            optionsBuilder.UseLazyLoadingProxies(false);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
