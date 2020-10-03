@@ -10,7 +10,7 @@ namespace Basic.Api.Application.Commands.Shops
     {
         public DeleteShopCommand(long id)
         {
-            id = Id;
+            Id = id;
         }
         public long Id { get; set; }
     }

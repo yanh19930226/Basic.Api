@@ -10,9 +10,9 @@ namespace Basic.Api.Application.Commands.Companys
     {
         public  CreateCompanyCommand(string name, string skuPrefix, decimal additionalFee)
         {
-            name = Name;
-            skuPrefix = SkuPrefix;
-            additionalFee = AdditionalFee;
+            Name = name;
+            SkuPrefix = skuPrefix;
+            AdditionalFee = additionalFee;
         }
         public string Name { get; set; }
 
