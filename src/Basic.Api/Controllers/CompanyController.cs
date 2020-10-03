@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Basic.Api.Application.Commands.Companys;
+using Basic.Api.Application.Queries.Companys;
 using Basic.Api.Data;
 using Basic.Api.Models.Domain;
 using Basic.Api.Models.Dto;
 using Basic.Api.Models.Dto.Company;
+using Core.Data.Domain.Bus;
 using Core.Extensions;
 using Core.Result;
 using Mapster;
@@ -21,12 +24,13 @@ namespace Basic.Api.Controllers
     [ApiController]
     public class CompanyController : Controller
     {
-        private readonly IMapper _mapper;
-        private BasicContext _context;
-        public CompanyController(IMapper mapper, BasicContext context)
+        private readonly ICompanyQueries _companyQueries;
+        private readonly IMediatorHandler _bus;
+
+        public CompanyController(ICompanyQueries companyQueries, IMediatorHandler bus)
         {
-            _mapper = mapper;
-            _context = context;
+            _companyQueries = companyQueries;
+            _bus = bus;
         }
         /// <summary>
         /// 获取公司
@@ -34,10 +38,9 @@ namespace Basic.Api.Controllers
         /// <returns></returns>
         [Route("GetCompanyList")]
         [HttpGet]
-        public IActionResult GetCompanyList()
+        public CoreResult<IQueryable<Company>> GetCompanyList()
         {
-            var result = _context.Companys.ToList();
-            return Ok(result);
+            return _companyQueries.GetAll();
         }
         /// <summary>
         /// 分页获取公司
@@ -45,43 +48,30 @@ namespace Basic.Api.Controllers
         /// <returns></returns>
         [Route("GetCompanyPageList")]
         [HttpPost]
-        public IActionResult GetCompanyPageList([FromBody]PostPageRequestDTO dto)
+        public PageResult<IQueryable<Company>> GetCompanyPageList([FromBody]PostPageRequestDTO dto)
         {
-
-            PageResult<IQueryable<Company>> obj = new PageResult<IQueryable<Company>>();
-
-            #region Expression Tree MultiOption Search
-            var searchexpression = LinqExtensions.True<Company>();
-
-            #endregion
-
-            #region Expression Tree MultiOption Order
-            var orderexpression = LinqExtensions.True<Company>();
-            #endregion
-
-            var tempData = _context.Companys.Where(searchexpression);
-            int total = tempData.Count();
-
-            tempData = tempData.OrderBy(orderexpression).
-                  Skip(dto.PageSize * (dto.PageIndex - 1)).
-                  Take(dto.PageSize);
-
-            obj.Result = tempData;
-            obj.Total = total;
-            return Ok(obj);
+            return _companyQueries.GetPage(dto);
         }
         /// <summary>
         /// 添加公司
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("AddCompany")]
-        public async Task<IActionResult> Add([FromBody]CompanyAddDto dto)
+        [Route("CreateCompany")]
+        public async Task<CoreResult> Create([FromBody]CreateCompanyDto dto)
         {
-            var company = _mapper.Map<Company>(dto);
-            _context.Companys.Add(company);
-            var result = await _context.SaveChangesAsync();
-            return Ok(result);
+            CoreResult result = new CoreResult();
+            CreateCompanyCommand command = new CreateCompanyCommand(dto.Name, dto.SkuPrefix,dto.AdditionalFee);
+            var res = await _bus.SendCommandAsync(command);
+            if (res)
+            {
+                result.Success("添加成功");
+            }
+            else
+            {
+                result.Failed("添加失败");
+            }
+            return result;
         }
         /// <summary>
         /// 修改公司
@@ -89,13 +79,20 @@ namespace Basic.Api.Controllers
         /// <returns></returns>
         [Route("UpdateCompany")]
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody]CompanyUpdateDto dto)
+        public async Task<CoreResult> Update([FromBody]UpdateCompanyDto dto)
         {
-            var company = _context.Companys.Where(p => p.Id == dto.Id).FirstOrDefault();
-            dto.Adapt(company);
-            _context.Update(company);
-            var result = await _context.SaveChangesAsync();
-            return Ok(result);
+            CoreResult result = new CoreResult();
+            UpdateCompanyCommand command = new UpdateCompanyCommand(dto);
+            var res = await _bus.SendCommandAsync(command);
+            if (res)
+            {
+                result.Success("修改成功");
+            }
+            else
+            {
+                result.Failed("修改失败");
+            }
+            return result;
         }
         /// <summary>
         /// 删除公司
@@ -103,12 +100,20 @@ namespace Basic.Api.Controllers
         /// <returns></returns>
         [Route("DeleteCompany/{Id}")]
         [HttpDelete]
-        public async Task<IActionResult> Delete(long Id)
+        public async Task<CoreResult> Delete(long Id)
         {
-            var company = _context.Companys.Where(p => p.Id == Id).FirstOrDefault();
-            _context.Companys.Remove(company);
-            var result = await _context.SaveChangesAsync();
-            return Ok(result);
+            CoreResult result = new CoreResult();
+            DeleteCompanyCommand command = new DeleteCompanyCommand(Id);
+            var res = await _bus.SendCommandAsync(command);
+            if (res)
+            {
+                result.Success("删除成功");
+            }
+            else
+            {
+                result.Failed("删除成功");
+            }
+            return result;
         }
     }
 }

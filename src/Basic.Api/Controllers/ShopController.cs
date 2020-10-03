@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Basic.Api.Application.Commands.Shops;
+using Basic.Api.Application.Queries.Shops;
 using Basic.Api.Data;
 using Basic.Api.Models.Domain;
+using Basic.Api.Models.Dto;
 using Basic.Api.Models.Dto.Shop;
+using Core.Data.Domain.Bus;
+using Core.Result;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,12 +23,13 @@ namespace Basic.Api.Controllers
     [ApiController]
     public class ShopController : Controller
     {
-        private readonly IMapper _mapper;
-        private BasicContext _context;
-        public ShopController(IMapper mapper, BasicContext context)
+        private readonly IShopQueries _shopQueries;
+        private readonly IMediatorHandler _bus;
+
+        public ShopController(IShopQueries shopQueries, IMediatorHandler bus)
         {
-            _mapper = mapper;
-            _context = context;
+            _shopQueries = shopQueries;
+            _bus = bus;
         }
         /// <summary>
         /// 获取店铺
@@ -31,10 +37,9 @@ namespace Basic.Api.Controllers
         /// <returns></returns>
         [Route("GetShopList")]
         [HttpGet]
-        public IActionResult GetShopList()
+        public CoreResult<IQueryable<Shop>> GetShopList()
         {
-            var result = _context.Shops.ToList();
-            return Ok(result);
+            return _shopQueries.GetAll();
         }
         /// <summary>
         /// 分页店铺
@@ -42,23 +47,29 @@ namespace Basic.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetShopPageList")]
-        public IActionResult GetShopPageList()
+        public PageResult<IQueryable<Shop>> GetShopPageList([FromBody]PostPageRequestDTO dto)
         {
-
-
-            return Ok();
+            return _shopQueries.GetPage(dto);
         }/// <summary>
          /// 添加店铺
          /// </summary>
          /// <returns></returns>
         [HttpPost]
-        [Route("AddShop")]
-        public async Task<IActionResult> Add([FromBody]ShopAddDto dto)
+        [Route("CreateShop")]
+        public async Task<CoreResult> Create([FromBody]CreateShopDto dto)
         {
-            var shop = _mapper.Map<Shop>(dto);
-            _context.Shops.Add(shop);
-            var result = await _context.SaveChangesAsync();
-            return Ok(result);
+            CoreResult result = new CoreResult();
+            CreateShopCommand command = new CreateShopCommand(dto);
+            var res = await _bus.SendCommandAsync(command);
+            if (res)
+            {
+                result.Success("添加成功");
+            }
+            else
+            {
+                result.Failed("添加失败");
+            }
+            return result;
         }
         /// <summary>
         /// 修改店铺
@@ -66,13 +77,20 @@ namespace Basic.Api.Controllers
         /// <returns></returns>
         [Route("UpdateShop")]
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody]ShopUpdateDto dto)
+        public async Task<CoreResult> Update([FromBody]UpdateShopDto dto)
         {
-            var shop = _context.Shops.Where(p => p.Id == dto.Id).FirstOrDefault();
-            dto.Adapt(shop);
-            _context.Update(shop);
-            var result = await _context.SaveChangesAsync();
-            return Ok(result);
+            CoreResult result = new CoreResult();
+            UpdateShopCommand command = new UpdateShopCommand(dto);
+            var res = await _bus.SendCommandAsync(command);
+            if (res)
+            {
+                result.Success("修改成功");
+            }
+            else
+            {
+                result.Failed("修改失败");
+            }
+            return result;
         }
         /// <summary>
         /// 删除店铺
@@ -80,12 +98,20 @@ namespace Basic.Api.Controllers
         /// <returns></returns>
         [Route("DeleteShop/{Id}")]
         [HttpDelete]
-        public async Task<IActionResult> Delete(long Id)
+        public async Task<CoreResult> Delete(long Id)
         {
-            var shop = _context.Shops.Where(p => p.Id == Id).FirstOrDefault();
-            _context.Shops.Remove(shop);
-            var result = await _context.SaveChangesAsync();
-            return Ok(result);
+            CoreResult result = new CoreResult();
+            DeleteShopCommand command = new DeleteShopCommand(Id);
+            var res = await _bus.SendCommandAsync(command);
+            if (res)
+            {
+                result.Success("删除成功");
+            }
+            else
+            {
+                result.Failed("删除成功");
+            }
+            return result;
         }
     }
 }

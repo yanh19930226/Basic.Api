@@ -1,9 +1,11 @@
 ﻿using Basic.Api.Models.Domain;
 using Basic.Api.Models.EntityConfiguration;
+using Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Basic.Api.Data
@@ -18,14 +20,16 @@ namespace Basic.Api.Data
         {
             optionsBuilder.UseLazyLoadingProxies(false);
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new CompanyCfg());
-            modelBuilder.ApplyConfiguration(new ShopCfg());
-        }
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-        public DbSet<Company> Companys { get; set; }
-        public DbSet<Shop> Shops { get; set; }
+            foreach (Type item in (Assembly.GetEntryAssembly()!.GetTypes()).Where(type => type.HasImplementedRawGeneric(typeof(IEntityTypeConfiguration<>))))
+            {
+                dynamic val = Activator.CreateInstance(item);
+                modelBuilder.ApplyConfiguration(val);
+            }
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

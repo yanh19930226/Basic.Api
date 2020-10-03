@@ -28,10 +28,10 @@ namespace Basic.Api
         {
             services.AddDbContext<BasicContext>(options =>
             {
-                options.UseMySql(Configuration.GetConnectionString("MysqlUser"), sql => sql.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
-            })
-                  .AddCoreSeriLog()
-               .AddCoreSwagger();
+                options.UseMySql(Configuration.GetSection("Zeus:Connection").Value, sql => sql.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
+            });
+            services.AddCoreSeriLog()
+                             .AddCoreSwagger();
         }
 
         public override void CommonConfigure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -5,12 +5,8 @@ using System.Threading.Tasks;
 
 namespace Basic.Api.Models.Dto.Shop
 {
-    public class ShopUpdateDto
+    public class CreateShopDto
     {
-        /// <summary>
-        /// ShopId
-        /// </summary>
-        public long Id { get; set; }
         /// <summary>
         /// 标题
         /// </summary>
