@@ -15,7 +15,7 @@ namespace Basic.Api.Controllers
     {
         /// <summary>
         /// 店铺
-        /// </summary>
+        /// </summary>                                                                                                                                                                   
         /// <returns></returns>
         [HttpGet]
         [Route("GetShopPageList")]
