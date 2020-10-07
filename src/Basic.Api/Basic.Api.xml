@@ -4,14 +4,51 @@
         <name>Basic.Api</name>
     </assembly>
     <members>
+        <member name="M:Basic.Api.Application.Queries.Companys.CompanyQueries.GetAll">
+            <summary>
+            列表数据不分页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Application.Queries.Companys.CompanyQueries.GetPage(Basic.Api.Abstractions.Dtos.Request.PostPageRequestDTO)">
+            <summary>
+            列表数据分页
+            </summary>
+            <param name="req"></param>
+            <returns></returns>
+        </member>
         <member name="T:Basic.Api.Controllers.CompanyController">
             <summary>
             公司
             </summary>
         </member>
-        <member name="M:Basic.Api.Controllers.CompanyController.GetCompanyPageList">
+        <member name="M:Basic.Api.Controllers.CompanyController.GetCompanyList">
             <summary>
             获取公司
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.CompanyController.GetCompanyPageList(Basic.Api.Abstractions.Dtos.Request.PostPageRequestDTO)">
+            <summary>
+            分页获取公司
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.CompanyController.Create(Basic.Api.Abstractions.Dtos.Request.Company.CreateCompanyRequestDto)">
+            <summary>
+            添加公司
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.CompanyController.Update(Basic.Api.Abstractions.Dtos.Request.Company.UpdateCompanyRequestDto)">
+            <summary>
+            修改公司
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.CompanyController.Delete(System.Int64)">
+            <summary>
+            删除公司
             </summary>
             <returns></returns>
         </member>
@@ -20,16 +57,35 @@
             店铺
              </summary>
         </member>
-        <member name="M:Basic.Api.Controllers.ShopController.GetShopPageList">
+        <member name="M:Basic.Api.Controllers.ShopController.GetShopList">
             <summary>
-            店铺
+            获取店铺
             </summary>
             <returns></returns>
         </member>
-        <member name="P:Basic.Api.Models.Domain.Shop.Id">
+        <member name="M:Basic.Api.Controllers.ShopController.GetShopPageList(Basic.Api.Abstractions.Dtos.Request.PostPageRequestDTO)">
             <summary>
-            ShopId
+            分页店铺
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.ShopController.Create(Basic.Api.Abstractions.Dtos.Request.Shop.CreateShopRequestDto)">
+            <summary>
+            添加店铺
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.ShopController.Update(Basic.Api.Abstractions.Dtos.Request.Shop.UpdateShopRequestDto)">
+            <summary>
+            修改店铺
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.ShopController.Delete(System.Int64)">
+            <summary>
+            删除店铺
+            </summary>
+            <returns></returns>
         </member>
         <member name="P:Basic.Api.Models.Domain.Shop.Name">
             <summary>

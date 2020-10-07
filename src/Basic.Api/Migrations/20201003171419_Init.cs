@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Basic.Api.Migrations
@@ -8,26 +9,32 @@ namespace Basic.Api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Companys",
+                name: "Company",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    ModifyTime = table.Column<DateTime>(nullable: false),
+                    IsDel = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     SkuPrefix = table.Column<string>(nullable: true),
                     AdditionalFee = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Companys", x => x.Id);
+                    table.PrimaryKey("PK_Company", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Shops",
+                name: "Shop",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    ModifyTime = table.Column<DateTime>(nullable: false),
+                    IsDel = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     CompanyId = table.Column<long>(nullable: false),
                     ApiKey = table.Column<string>(nullable: true),
@@ -40,28 +47,28 @@ namespace Basic.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shops", x => x.Id);
+                    table.PrimaryKey("PK_Shop", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Shops_Companys_CompanyId",
+                        name: "FK_Shop_Company_CompanyId",
                         column: x => x.CompanyId,
-                        principalTable: "Companys",
+                        principalTable: "Company",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shops_CompanyId",
-                table: "Shops",
+                name: "IX_Shop_CompanyId",
+                table: "Shop",
                 column: "CompanyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Shops");
+                name: "Shop");
 
             migrationBuilder.DropTable(
-                name: "Companys");
+                name: "Company");
         }
     }
 }
