@@ -52,6 +52,29 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Basic.Api.Controllers.ExchangeRateController">
+             <summary>
+            汇率
+             </summary>
+        </member>
+        <member name="M:Basic.Api.Controllers.ExchangeRateController.GetExchangeRateList">
+            <summary>
+            获取汇率
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.ExchangeRateController.GetExchangeRatePageList(Basic.Api.Abstractions.Dtos.Request.PostPageRequestDTO)">
+            <summary>
+            分页获取汇率
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.ExchangeRateController.AsyncExchangeRate">
+            <summary>
+            汇率同步
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Basic.Api.Controllers.ShopController">
              <summary>
             店铺

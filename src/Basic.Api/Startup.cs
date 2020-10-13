@@ -26,10 +26,10 @@ namespace Basic.Api
 
         public override void CommonServices(IServiceCollection services)
         {
-            //services.AddDbContext<BasicContext>(options =>
-            //{
-            //    options.UseMySql(Configuration.GetSection("Zeus:Connection").Value, sql => sql.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
-            //});
+            services.AddDbContext<BasicContext>(options =>
+            {
+                options.UseMySql(Configuration.GetSection("Zeus:Connection").Value, sql => sql.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
+            });
             services.AddCoreSeriLog()
                              .AddCoreSwagger();
         }
