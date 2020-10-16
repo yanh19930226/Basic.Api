@@ -122,7 +122,17 @@
         </member>
         <member name="P:Basic.Api.Models.Domain.Shop.ApiKey">
             <summary>
-            密钥
+            ApiKey
+            </summary>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.ApiKeyValue">
+            <summary>
+            ApiKeyValue
+            </summary>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.ApiUrl">
+            <summary>
+            ApiUrl
             </summary>
         </member>
         <member name="P:Basic.Api.Models.Domain.Shop.IsOpen">

@@ -15,11 +15,19 @@ namespace Basic.Api.Models.Domain
         /// <summary>
         /// 所属公司
         /// </summary>
-        public long CompanyId { get; set; } 
+        public long CompanyId { get; set; }
         /// <summary>
-        /// 密钥
+        /// ApiKey
         /// </summary>
-        public String ApiKey { get; set; } 
+        public String ApiKey { get; set; }
+        /// <summary>
+        /// ApiKeyValue
+        /// </summary>
+        public String ApiKeyValue { get; set; }
+        /// <summary>
+        /// ApiUrl
+        /// </summary>
+        public String ApiUrl { get; set; }
         /// <summary>
         /// 是否启用
         /// </summary>
