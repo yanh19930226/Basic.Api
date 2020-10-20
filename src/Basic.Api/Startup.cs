@@ -4,7 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Basic.Api.Data;
+using Basic.Api.Services;
+using Basic.Api.Services.Impl;
 using Core;
+using Core.Consul;
+using Core.EventBus.Impletment.RabbitMq;
 using Core.Logger;
 using Core.Swagger;
 using Microsoft.AspNetCore.Builder;
@@ -26,17 +30,21 @@ namespace Basic.Api
 
         public override void CommonServices(IServiceCollection services)
         {
-            services.AddDbContext<BasicContext>(options =>
-            {
-                options.UseMySql(Configuration.GetSection("Zeus:Connection").Value, sql => sql.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
-            });
+            //services.AddDbContext<BasicContext>(options =>
+            //{
+            //    options.UseMySql(Configuration.GetSection("Zeus:Connection").Value, sql => sql.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
+            //});
+
             services.AddCoreSeriLog()
+                     .AddConsul()
                              .AddCoreSwagger();
         }
 
         public override void CommonConfigure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCoreSwagger();
+            app
+                .UseConsul()
+                .UseCoreSwagger();
         }
     }
 }

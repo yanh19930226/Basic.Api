@@ -10,6 +10,7 @@ using Basic.Api.Application.Queries.Companys;
 using Basic.Api.Data;
 using Basic.Api.Models.Domain;
 using Core.Data.Domain.Bus;
+using Core.EventBus.Abstractions;
 using Core.Extensions;
 using Core.Result;
 using Mapster;
@@ -26,11 +27,13 @@ namespace Basic.Api.Controllers
     {
         private readonly ICompanyQueries _companyQueries;
         private readonly IMediatorHandler _bus;
+        private readonly IEventBus _eventBus;
 
-        public CompanyController(ICompanyQueries companyQueries, IMediatorHandler bus)
+        public CompanyController(ICompanyQueries companyQueries, IMediatorHandler bus, IEventBus eventBus)
         {
             _companyQueries = companyQueries;
             _bus = bus;
+            _eventBus = eventBus;
         }
         /// <summary>
         /// 获取公司

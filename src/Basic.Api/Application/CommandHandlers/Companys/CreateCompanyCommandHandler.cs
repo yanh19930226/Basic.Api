@@ -2,6 +2,7 @@
 using Basic.Api.Models.Domain;
 using Core.Data.Domain.CommandHandlers;
 using Core.Data.Domain.Interfaces;
+using Core.EventBus.Abstractions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Basic.Api.Application.CommandHandlers.Comapanys
     public class CreateCompanyCommandHandler : CommandHandler, IRequestHandler<CreateCompanyCommand, bool>
     {
         private readonly IRepository<Company> _companyRepository;
+       
         public CreateCompanyCommandHandler(IUnitOfWork uow, IRepository<Company> companyRepository) : base(uow)
         {
             _companyRepository = companyRepository;

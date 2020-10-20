@@ -1,7 +1,9 @@
 ﻿using Basic.Api.Application.Commands.Companys;
 using Basic.Api.Models.Domain;
+using Basic.Api.Services;
 using Core.Data.Domain.CommandHandlers;
 using Core.Data.Domain.Interfaces;
+using Core.EventBus.Abstractions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace Basic.Api.Application.CommandHandlers.Comapanys
     public class UpdateCompanyCommandHandler : CommandHandler, IRequestHandler<UpdateCompanyCommand, bool>
     {
         private readonly IRepository<Company> _companyRepository;
+     
         public UpdateCompanyCommandHandler(IUnitOfWork uow, IRepository<Company> companyRepository) : base(uow)
         {
             _companyRepository = companyRepository;

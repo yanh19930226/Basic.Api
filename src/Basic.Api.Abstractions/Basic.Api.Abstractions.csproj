@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>1.0.1</Version>
-    <Description>添加属性</Description>
+    <Version>1.0.2</Version>
+    <Description>基础服务枚举</Description>
   </PropertyGroup>
 
 </Project>
