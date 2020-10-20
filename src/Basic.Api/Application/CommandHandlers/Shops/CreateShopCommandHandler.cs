@@ -1,4 +1,5 @@
-﻿using Basic.Api.Application.Commands.Shops;
+﻿using Basic.Api.Abstractions.Enums;
+using Basic.Api.Application.Commands.Shops;
 using Basic.Api.Models.Domain;
 using Core.Data.Domain.CommandHandlers;
 using Core.Data.Domain.Interfaces;
@@ -21,9 +22,16 @@ namespace Basic.Api.Application.CommandHandlers.Shops
         public async Task<bool> Handle(CreateShopCommand request, CancellationToken cancellationToken)
         {
             Shop shop = new Shop();
+            shop.CompanyId = request.createShopRequestDto.CompanyId;
             shop.Name = request.createShopRequestDto.Name;
-            //shop.SkuPrefix = request.SkuPrefix;
-            //shop.AdditionalFee = request.AdditionalFee;
+            shop.ApiKey = request.createShopRequestDto.ApiKey;
+            shop.ApiKeyValue = request.createShopRequestDto.ApiKeyValue;
+            shop.ApiUrl = request.createShopRequestDto.ApiUrl;
+            shop.AdminUrl = request.createShopRequestDto.AdminUrl;
+            shop.Currency = request.createShopRequestDto.Currency;
+            shop.OrderPrefix = request.createShopRequestDto.OrderPrefix;
+            shop.Types=(int) request.createShopRequestDto.Types;
+            shop.IsOpen = (int)request.createShopRequestDto.IsOpen;
             _shopRepository.Add(shop);
             return await CommitAsync();
         }

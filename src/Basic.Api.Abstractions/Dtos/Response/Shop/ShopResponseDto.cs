@@ -46,5 +46,13 @@ namespace Basic.Api.Abstractions.Dtos.Response.Shop
         /// 后台地址
         /// </summary>
         public String AdminUrl { get; set; }
+        /// <summary>
+        /// ApiKeyValue
+        /// </summary>
+        public String ApiKeyValue { get; set; }
+        /// <summary>
+        /// ApiUrl
+        /// </summary>
+        public String ApiUrl { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Basic.Api.Abstractions.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,17 +20,25 @@ namespace Basic.Api.Abstractions.Dtos.Request.Shop
         /// </summary>
         public long CompanyId { get; set; }
         /// <summary>
-        /// 密钥
+        /// ApiKey
         /// </summary>
         public String ApiKey { get; set; }
         /// <summary>
+        /// ApiKeyValue
+        /// </summary>
+        public String ApiKeyValue { get; set; }
+        /// <summary>
+        /// ApiUrl
+        /// </summary>
+        public String ApiUrl { get; set; }
+        /// <summary>
         /// 是否启用
         /// </summary>
-        public int IsOpen { get; set; }
+        public IsOpen IsOpen { get; set; }
         /// <summary>
         /// 类型
         /// </summary>
-        public int Types { get; set; }
+        public PlatformType Types { get; set; }
         /// <summary>
         /// 订单前缀
         /// </summary>

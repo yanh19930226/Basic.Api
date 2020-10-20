@@ -21,9 +21,16 @@ namespace Basic.Api.Application.CommandHandlers.Shops
         public async Task<bool> Handle(UpdateShopCommand request, CancellationToken cancellationToken)
         {
             var update = await _shopRepository.GetByIdAsync(request.updateShopRequestDto.Id);
+            update.CompanyId = request.updateShopRequestDto.CompanyId;
             update.Name = request.updateShopRequestDto.Name;
-            //update.SkuPrefix = request.updateCompanyDto.SkuPrefix;
-            //update.AdditionalFee = request.updateCompanyDto.AdditionalFee;
+            update.ApiKey = request.updateShopRequestDto.ApiKey;
+            update.ApiKeyValue = request.updateShopRequestDto.ApiKeyValue;
+            update.ApiUrl = request.updateShopRequestDto.ApiUrl;
+            update.AdminUrl = request.updateShopRequestDto.AdminUrl;
+            update.Currency = request.updateShopRequestDto.Currency;
+            update.OrderPrefix = request.updateShopRequestDto.OrderPrefix;
+            update.Types = (int)request.updateShopRequestDto.Types;
+            update.IsOpen = (int)request.updateShopRequestDto.IsOpen;
             _shopRepository.Update(update);
             return await CommitAsync();
         }

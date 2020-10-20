@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Basic.Api.Abstractions.Dtos.Request.Shop;
+using Basic.Api.Abstractions.Dtos.Response.Shop;
 using Basic.Api.Models.Domain;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace Basic.Api.Application.Profiles
         {
             CreateMap<CreateShopRequestDto, Shop>();
             CreateMap<UpdateShopRequestDto, Shop>();
+
+            CreateMap<Shop, ShopResponseDto>();
         }
     }
 }
