@@ -55,5 +55,9 @@ namespace Basic.Api.Abstractions.Dtos.Request.Shop
         /// 后台地址
         /// </summary>
         public String AdminUrl { get; set; }
+        /// <summary>
+        /// ShareKey
+        /// </summary>
+        public String ShareKey { get; set; }
     }
 }

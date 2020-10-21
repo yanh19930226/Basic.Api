@@ -96,6 +96,10 @@
             <summary>
             添加店铺
             </summary>
+            <remarks>
+            说明:Domain网站网站前台地址,AdminUrl店铺后台地址
+            XShoppy中ApiUrl值和Domain值相同
+            </remarks>
             <returns></returns>
         </member>
         <member name="M:Basic.Api.Controllers.ShopController.Update(Basic.Api.Abstractions.Dtos.Request.Shop.UpdateShopRequestDto)">
@@ -163,6 +167,11 @@
         <member name="P:Basic.Api.Models.Domain.Shop.AdminUrl">
             <summary>
             后台地址
+            </summary>
+        </member>
+        <member name="P:Basic.Api.Models.Domain.Shop.ShareKey">
+            <summary>
+            ShareKey
             </summary>
         </member>
     </members>

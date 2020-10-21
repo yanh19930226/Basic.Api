@@ -32,6 +32,7 @@ namespace Basic.Api.Application.CommandHandlers.Shops
             shop.OrderPrefix = request.createShopRequestDto.OrderPrefix;
             shop.Types=(int) request.createShopRequestDto.Types;
             shop.IsOpen = (int)request.createShopRequestDto.IsOpen;
+            shop.ShareKey= request.createShopRequestDto.ShareKey;
             _shopRepository.Add(shop);
             return await CommitAsync();
         }

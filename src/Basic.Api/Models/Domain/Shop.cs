@@ -52,6 +52,11 @@ namespace Basic.Api.Models.Domain
         /// 后台地址
         /// </summary>
         public String AdminUrl { get; set; }
+        /// <summary>
+        /// ShareKey
+        /// </summary>
+        public String ShareKey { get; set; }
+
         public virtual Company Company { get; set; }
     }
 }

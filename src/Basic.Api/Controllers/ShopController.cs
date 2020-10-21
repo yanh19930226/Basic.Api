@@ -50,10 +50,15 @@ namespace Basic.Api.Controllers
         public PageResult<IQueryable<Shop>> GetShopPageList([FromBody]PostPageRequestDTO dto)
         {
             return _shopQueries.GetPage(dto);
-        }/// <summary>
-         /// 添加店铺
-         /// </summary>
-         /// <returns></returns>
+        }
+        /// <summary>
+        /// 添加店铺
+        /// </summary>
+        /// <remarks>
+        /// 说明:Domain网站网站前台地址,AdminUrl店铺后台地址
+        /// XShoppy中ApiUrl值和Domain值相同
+        /// </remarks>
+        /// <returns></returns>
         [HttpPost]
         [Route("CreateShop")]
         public async Task<CoreResult> Create([FromBody] CreateShopRequestDto dto)

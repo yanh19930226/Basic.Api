@@ -31,6 +31,7 @@ namespace Basic.Api.Application.CommandHandlers.Shops
             update.OrderPrefix = request.updateShopRequestDto.OrderPrefix;
             update.Types = (int)request.updateShopRequestDto.Types;
             update.IsOpen = (int)request.updateShopRequestDto.IsOpen;
+            update.ShareKey = request.updateShopRequestDto.ShareKey;
             _shopRepository.Update(update);
             return await CommitAsync();
         }
