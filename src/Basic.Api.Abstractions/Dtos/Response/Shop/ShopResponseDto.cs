@@ -54,5 +54,9 @@ namespace Basic.Api.Abstractions.Dtos.Response.Shop
         /// ApiUrl
         /// </summary>
         public String ApiUrl { get; set; }
+        /// <summary>
+        /// ApiUrl
+        /// </summary>
+        public String ShareKey { get; set; }
     }
 }
