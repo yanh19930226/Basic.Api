@@ -52,6 +52,23 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Basic.Api.Controllers.CountryController">
+            <summary>
+            公司
+            </summary>
+        </member>
+        <member name="M:Basic.Api.Controllers.CountryController.AsyncCountry">
+            <summary>
+            同步接口获取国家信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Basic.Api.Controllers.CountryController.GetCountryList">
+            <summary>
+            获取国家信息
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Basic.Api.Controllers.ExchangeRateController">
              <summary>
             汇率

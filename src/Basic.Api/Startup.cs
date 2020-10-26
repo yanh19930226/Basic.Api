@@ -19,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using YunTu.SDK;
 
 namespace Basic.Api
 {
@@ -34,6 +35,9 @@ namespace Basic.Api
             {
                 options.UseMySql(Configuration.GetSection("Zeus:Connection").Value, sql => sql.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
             });
+
+
+            services.AddSingleton(new YuntuClient());
 
             services.AddCoreSeriLog()
                      .AddConsul()
